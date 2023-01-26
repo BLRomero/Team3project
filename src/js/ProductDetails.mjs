@@ -1,4 +1,4 @@
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage } from './utils.mjs';
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -29,21 +29,21 @@ export default class ProductDetails {
       // use our datasource to get the details for the current product.
         this.product = await this.dataSource.findProductById(this.productId);
         // once we have the product details we can render out the HTML
-        this.renderProductDetails("main");
+        this.renderProductDetails('main');
         // once the HTML is rendered we can add a listener to Add to Cart button
         document
-            .getElementById("addToCart")
-            .addEventListener("click", this.addToCart.bind(this));
+            .getElementById('addToCart')
+            .addEventListener('click', this.addToCart.bind(this));
         }
 
     addToCart(product) {
-        setLocalStorage("so-cart", this.product);
+        setLocalStorage('so-cart', this.product);
     }
 
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
-          "afterBegin",
+          'afterBegin',
           productDetailsTemplate(this.product)
         );
       }
