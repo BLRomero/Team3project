@@ -1,26 +1,43 @@
 import { getLocalStorage } from './utils.mjs';
 
+
+
 function renderCartContents() {
-  const cartItems = getLocalStorage('so-cart');
+  // const cartItems = getLocalStorage('so-cart');
+
+// I created some pseudo in lieu of cart being broken.
+
+  let test = {
+    Image: '../images/noun_Tent_2517.svg',
+    Name: 'Test',
+    Color:'#000000',
+    Quantity: 1,
+    FinalPrice: 199.99
+  }
+
+  document.querySelector('.product-list').innerHTML = cartItemTemplate(test);
+
+  console.log(test);
 
   // only create a product list and total if cart isn't empty
-  if (cartItems !== null) {
+  // if (cartItems !== null) {
   
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-    document.querySelector('.product-list').innerHTML = htmlItems.join('');
+    // const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    // document.querySelector('.product-list').innerHTML = htmlItems.join('');
 
     // get the sum of cart products
     renderCartTotal();
 
-} else {
-  // if cart is empty, display message
-  document.getElementById('cart-footer').classList.remove('hide');
-  document.getElementById('cart-footer').innerHTML = 'Your cart is empty.<br>Shop <a href=\'/index.html\'>here</a>.';
-}
+// } else {
+//   // if cart is empty, display message
+//   document.getElementById('cart-footer').classList.remove('hide');
+//   document.getElementById('cart-footer').innerHTML = 'Your cart is empty.<br>Shop <a href=\'/index.html\'>here</a>.';
+// }
 }
 
 function cartItemTemplate(item) {
-  const newItem = `<li class="cart-card divider">
+  let number = 0;
+  const newItem = `<li class="cart-card divider cartrows">
   <a href="#" class="cart-card__image">
     <img
       src="${item.Image}"
@@ -30,10 +47,10 @@ function cartItemTemplate(item) {
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <p class="cart-card__color">${item.ColorName}</p>  //item.Colors [0] .ColorName
   <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
-</li>`;
+</li>  <div class= 'removeIcon' id= ${number}>X</div>`;
 
   return newItem;
 }

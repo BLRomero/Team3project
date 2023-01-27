@@ -14,25 +14,33 @@ export function setLocalStorage(key, data) {
 
   // check if there is anything in local storage. If not,
   // create an empty array and add item. Otherwise, parse and add
-  const cartItems = (() => {
-    const itemData = localStorage.getItem(key);
-    return itemData === null ? []
-    : JSON.parse(itemData);
-  })();
+  // const cartItems = (() => {
+  //   
+  //   return itemData === null ? []
+  //   : JSON.parse(itemData);
+  // });
 
+  console.log(data);
+  let itemData = localStorage.getItem(key);
+  // let firstItem = localStorage.getItem();
+  let returnValue = []
+    itemData === null ? 0 : returnValue = JSON.parse(itemData);
   // check if item is already in cart
-  if (cartItems.some(e => e.Id === data.Id)) {
+
+  if (returnValue.Id === data.Id) {
     // if it is in cart, increase quantity by 1
-    data = cartItems.find(e => e.Id === data.Id);
-    data.Quantity += 1;
-  } else {
+    returnValue.Quantity += 1;
+    localStorage.setItem(key, JSON.stringify(returnValue));
+     } 
+     else {
     // if its not already in cart, give it quantity 1 and add to cart
     data.Quantity = 1;
-    cartItems.push(data);
+    // returnValue.push(returnValue);
+    localStorage.setItem(key, JSON.stringify(data));
   }
 
   // save to local storage
-    localStorage.setItem(key, JSON.stringify(cartItems));
+
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
@@ -47,6 +55,7 @@ export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const product = urlParams.get('product');
+  alert(product);
   console.log(queryString);
   // added returning the product
   return product;
