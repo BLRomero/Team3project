@@ -17,11 +17,11 @@ function productCardTemplate(product) {
 
   // remove tents we don't need
 function removeUnneededProducts(array, index) {
-if (index > -1) { // only splice array when item is found
-  array.splice(index, 1); // 2nd parameter means remove one item only
-}
-return array;
-}
+  if (index > -1) { // only splice array when item is found
+    array.splice(index, 1); // 2nd parameter means remove one item only
+  }
+  return array;
+  }
 
 export default class ProductList {
     constructor(category, dataSource, listElement) {
