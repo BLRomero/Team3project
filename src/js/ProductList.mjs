@@ -11,8 +11,9 @@ function productCardTemplate(product) {
         <h2 class="card__name">
         ${product.NameWithoutBrand}
         </h2>
-        <p class="product-card__price">${product.FinalPrice}</p>
-        <p class="product-card_discount_price">${product.SuggestedRetailPrice - product.FinalPrice}</p></a>
+        <p class="product-card_MSR_price">Originally, $${product.SuggestedRetailPrice}.00</p>
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <p class="product-card_discount_price">${(((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)}% OFF</p></a>
       </li>`;
   }
 
