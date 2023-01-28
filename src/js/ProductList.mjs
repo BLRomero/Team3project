@@ -15,6 +15,14 @@ function productCardTemplate(product) {
       </li>`;
   }
 
+  // remove tents we don't need
+function removeUnneededProducts(array, index) {
+if (index > -1) { // only splice array when item is found
+  array.splice(index, 1); // 2nd parameter means remove one item only
+}
+return array;
+}
+
 export default class ProductList {
     constructor(category, dataSource, listElement) {
       // We passed in this information to make our class as reusable as possible.
@@ -26,6 +34,13 @@ export default class ProductList {
     async init() {
       // our dataSource will return a Promise...so we can use await to resolve it.
       const list = await this.dataSource.getData();
+
+      // remove the two tents we don't need
+      const index1 = list.map(e => e.Id).indexOf('989CG');
+      removeUnneededProducts(list, index1);
+      const index2 = list.map(e => e.Id).indexOf('880RT');
+      removeUnneededProducts(list, index2);
+      
       // render the list 
       this.renderList(list);
     }
