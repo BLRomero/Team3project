@@ -3,7 +3,7 @@ import { renderListWithTemplate } from "./utils.mjs";
 function productCardTemplate(product) {
   let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
   let newDiscount = Math.round(discount)
-  console.log(newDiscount)
+  //console.log(newDiscount)
 
     return `<li class="product-card">
         <a href="product_pages/index.html?product=${product.Id}">
