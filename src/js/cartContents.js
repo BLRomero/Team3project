@@ -6,10 +6,12 @@ function calcNumCartItems(cartItemsVar) {
   // calcuates number of items in cartlet
   let numberInCart = 0;
 
-  for (let i = 0; i < cartItemsVar.length; i++) {
-    numberInCart += cartItemsVar[i]["Quantity"];
+  if (cartItemsVar !== null) {
+    for (let i = 0; i < cartItemsVar.length; i++) {
+      numberInCart += cartItemsVar[i]["Quantity"];
+    }
+    return numberInCart;
   }
-  return numberInCart;
 }
 
 function totalItemsInCart(items) {
