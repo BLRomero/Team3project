@@ -249,3 +249,12 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.removeIcon {
+  width: 25px;
+  height: 25px;
+  background-color: red;
+  border: solid 1px black;
+  text-align: center;
+}
+    
