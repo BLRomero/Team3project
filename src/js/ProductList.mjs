@@ -19,6 +19,7 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
         <p class="product-card_discount_price">${newDiscount}% OFF</p></a>
         <button class="card__productModalbtn">Quick View</button>
+        <div value="${product.Id}" id="productModalId${product.Id}" class="modal">Hello</div>
       </li>`;
   }
 
