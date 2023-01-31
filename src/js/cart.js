@@ -42,26 +42,6 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// I created some pseudo in lieu of cart being broken.
-
-let test = {
-  Image: '../images/noun_Tent_2517.svg',
-  Name: 'Test',
-  Color:'#000000',
-  Quantity: 1,
-FinalPrice: 199.99
-}
-document.querySelector('.product-list').innerHTML = cartItemTemplate(test);
-console.log(test);
-
-
-// remove item from cart- add p and li
-let number = 0;
-
-const newItem = `<li class="cart-card divider cartrows">
-<p class="cart-card__color">${item.ColorName}</p> //item.Colors [0] .ColorName
-</li> <div class= 'removeIcon' id= ${number}>X</div>`;
-
 
 // if there are items in the cart, total will be displayed
 function renderCartTotal() {
