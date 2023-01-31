@@ -5,14 +5,14 @@ const dataSource = new ProductData("tents");
 const element = document.querySelector(".product-list");
 const listing = new ProductList("Tents", dataSource, element);
 
-
+// remove from cart variables
 const removeIcons = document.getElementsByClassName('removeIcon');
 const cartrows = document.getElementsByClassName('cartrows');
 
 listing.init();
 
 
-// Eventlisteners 
+// remove from cart Eventlisteners 
 for(let icon of removeIcons){
     let index = 0;
     icon.addEventListener('click', (e)=> {
