@@ -42,7 +42,6 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
 // if there are items in the cart, total will be displayed
 function renderCartTotal() {
   const cartItems = getLocalStorage("so-cart");
