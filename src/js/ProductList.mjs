@@ -18,7 +18,6 @@ function productCardTemplate(product) {
         <p class="product-card_MSR_price">Originally, $${product.SuggestedRetailPrice}.00</p>
         <p class="product-card__price">$${product.FinalPrice}</p>
         <p class="product-card_discount_price">${newDiscount}% OFF</p></a>
-        <button class="card__productModalbtn">Quick View</button>
       </li>`;
   }
 
