@@ -192,7 +192,7 @@ button {
 }
 
 /* Style for list card modal */
-.modal {
+#modal {
   display: none; /* Hidden by default */
   position: fixed;
   z-index: 1;

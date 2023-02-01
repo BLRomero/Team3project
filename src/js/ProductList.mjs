@@ -21,24 +21,6 @@ function productCardTemplate(product) {
         <p class="product-card__price">$${product.FinalPrice}</p>
         <p class="product-card_discount_price">${newDiscount}% OFF</p></a>
         <button class="card__productModalbtn" value="${product.Id}">Quick View</button>
-        <div id="productModalId${product.Id}" class="modal">
-          <section class="product-detail"> <h3>${product.Brand.Name}</h3>
-          <h2 class="divider">${product.NameWithoutBrand}</h2>
-          <img
-            class="divider"
-            src="${product.Image}"
-            alt="${product.NameWithoutBrand}"
-          />
-          <p class="product-card__price">$${product.FinalPrice}</p>
-          <p class="product-card_discount_price">${newDiscount}% OFF</p></a>
-          <p class="product__color">${product.Colors[0].ColorName}</p>
-          <p class="product__description">
-          ${product.DescriptionHtmlSimple}
-          </p>
-          <div class="product-detail__add">
-            <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-          </div></section>
-        </div>
       </li>`;
 }
 
