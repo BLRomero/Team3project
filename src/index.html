@@ -6,7 +6,8 @@
     <title>Sleep Outside | Home</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="js/main.js" type="module"></script>
-    <script src="./js/cartContents.js" type="module"></script>
+    <script src="/js/cartContents.js" type="module"></script>
+    <script src="/js/modal.js" type="module"></script>
   </head>
   <body>
     <header class="divider">
@@ -70,7 +71,13 @@
       </section>
       <section class="products">
         <h2>Top Products</h2>
-        <ul class="product-list"></ul>
+        <ul class="product-list">
+          <div id="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+            </div>
+          </div>
+        </ul>
       </section>
     </main>
     <footer>&copy;NOT a real business</footer>

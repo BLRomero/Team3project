@@ -1,6 +1,6 @@
 import { setLocalStorage } from "./utils.mjs";
 
-function productDetailsTemplate(product) {
+export function productDetailsTemplate(product) {
   let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
   let newDiscount = Math.round(discount)
   //console.log(newDiscount)
