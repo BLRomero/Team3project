@@ -10,10 +10,8 @@ window.onload = function () {
 
   for (var i = 0; i < buttons.length; i++) {
     let buttonId = buttons[i].value;
-    buttons[i].addEventListener("click", openModal(buttonId)
+    buttons[i].addEventListener("click", function() {openModal(buttonId)}
     , false);
 }
-
-
 
 };
