@@ -60,6 +60,7 @@ class ProductModal {
       .addEventListener("click", this.addToCart.bind(this));
   }
 
+  // add to cart from home page
   addToCart() {
     setLocalStorage("so-cart", this.product);
   }
