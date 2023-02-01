@@ -4,13 +4,16 @@ window.onload = function () {
   // add event listener to Quick View Button
   const buttons = document.getElementsByClassName("card__productModalbtn");
   
-
-  var openModal = function() {
-    console.log("It worked");
+  function openModal(buttonId) {
+    console.log("Id", buttonId);
   }
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", openModal, false);
+    let buttonId = buttons[i].value;
+    buttons[i].addEventListener("click", openModal(buttonId)
+    , false);
 }
+
+
 
 };
