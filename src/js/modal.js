@@ -1,13 +1,17 @@
 import ProductData from "./ProductData.mjs";
+import { productDetailsTemplate } from "./ProductDetails.mjs";
+
 // create instance of Product Data class
 const dataSource = new ProductData("tents");
 
+const modal = document.getElementById("modal");
+const buttons = document.getElementsByClassName("card__productModalbtn");
+const closeX = document.getElementsByClassName("close")[0];
+
 // wrap in window onload to remove error
 window.onload = function () {
-  const modal = document.getElementById("modal");
-
-  const buttons = document.getElementsByClassName("card__productModalbtn");
   
+  // opens the modal window
   function openModal(buttonId) {
     console.log("Id", buttonId);
     modal.style.display = "block";
@@ -23,46 +27,19 @@ window.onload = function () {
 }
 };
 
-const span = document.getElementsByClassName("close")[0];
-
 // close modal if click on "x"
-span.onclick = function() {
-  modal.style.display = "none";
-  const listing = new ProductModal("Tents", dataSource, element);
-  console.log("made it here");
-  listing.init();
+closeX.onclick = function() {
+  removeModalDetails();
 }
 
 // close modal if click outside of it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+    removeModalDetails();
   }
 }
 
-
-function productModalTemplate(product) {
-  let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
-  let newDiscount = Math.round(discount)
-  return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
-    <h2 class="divider">${product.NameWithoutBrand}</h2>
-    <img
-      class="divider"
-      src="${product.Image}"
-      alt="${product.NameWithoutBrand}"
-    />
-    <p class="product-card__price">$${product.FinalPrice}</p>
-    <p class="product-card_discount_price">${newDiscount}% OFF</p></a>
-    <p class="product__color">${product.Colors[0].ColorName}</p>
-    <p class="product__description">
-    ${product.DescriptionHtmlSimple}
-    </p>
-    <div class="product-detail__add">
-      <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-    </div></section>`;
-}
-
-export default class ProductModal {
+class ProductModal {
     constructor(productId, dataSource){
         this.productId = productId;
         this.product = {};
@@ -73,15 +50,21 @@ export default class ProductModal {
       // use our datasource to get the details for the current product.
         this.product = await this.dataSource.findProductById(this.productId);
         // once we have the product details we can render out the HTML
-        this.renderProductModal("modal");
+        this.renderProductModal("modal-content");
         }
 
     renderProductModal(selector) {
-        const element = document.getElementById(selector);
-        console.log(element);
+        const element = document.getElementsByClassName(selector)[0];
         element.insertAdjacentHTML(
-          "afterBegin",
-          productModalTemplate(this.product)
+          "beforeEnd",
+          productDetailsTemplate(this.product)
         );
       }
+}
+
+// remove modal details for clean slate each click
+function removeModalDetails() {
+  modal.style.display = "none";
+  const element = document.getElementsByClassName("product-detail")[0];
+  element.remove();
 }
