@@ -1,3 +1,5 @@
+import { calcNumCartItems } from "./cartContents";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -96,4 +98,6 @@ export async function loadHeaderFooter() {
 
   renderWithTemplate(headerTemplate, header);
   renderWithTemplate(footerTemplate, footer);
+
+  calcNumCartItems();
 }
