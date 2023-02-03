@@ -54,26 +54,12 @@ function numberWithCommas(x) {
   
     // add the total price
     let cartTotal = 0;
-    // calcuates number of items in cart
-    let numberInCart = 0;
     for (let i = 0; i < cartItems.length; i++) {
       cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
-      numberInCart += cartItems[i]["Quantity"];
     }
     cartTotal = numberWithCommas(cartTotal.toFixed(2));
-  
-    totalItemsInCart(numberInCart);
   
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
     document.getElementById("cart-footer").appendChild(cartTotalContent);
-  }
-
-  
-function totalItemsInCart(items) {
-    if (items >= 1) {
-      let element = document.getElementById("numberOfItems");
-      element.classList.add("cartItems_total");
-      document.getElementById("total_items_in_cart").innerHTML = items;
-    }
   }
