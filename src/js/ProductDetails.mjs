@@ -1,3 +1,4 @@
+import { calcNumCartItems } from "./cartContents.js";
 import { setLocalStorage } from "./utils.mjs";
 
 export function productDetailsTemplate(product) {
@@ -43,6 +44,7 @@ export default class ProductDetails {
 
     addToCart() {
         setLocalStorage("so-cart", this.product);
+        calcNumCartItems();
     }
 
     renderProductDetails(selector) {
