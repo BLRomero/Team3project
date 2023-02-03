@@ -1,3 +1,5 @@
+import { calcNumCartItems } from "./cartContents";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -91,9 +93,11 @@ export async function loadHeaderFooter() {
   let headerTemplate = await loadTemplate("../partials/header.html");
   let footerTemplate = await loadTemplate("../partials/footer.html");
 
-  const header = document.querySelector("header")
-  const footer = document.querySelector("footer")
+  const header = document.querySelector("header");
+  const footer = document.querySelector("footer");
 
-  renderWithTemplate(headerTemplate, header)
-  renderWithTemplate(footerTemplate, footer)
+  renderWithTemplate(headerTemplate, header);
+  renderWithTemplate(footerTemplate, footer);
+
+  calcNumCartItems();
 }

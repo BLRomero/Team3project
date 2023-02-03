@@ -1,16 +1,15 @@
 import { getLocalStorage } from "./utils.mjs";
 
-const cartItems = getLocalStorage("so-cart");
-
-function calcNumCartItems(cartItemsVar) {
+export function calcNumCartItems() {
+  const cartItems = getLocalStorage("so-cart");
   // calcuates number of items in cartlet
   let numberInCart = 0;
 
-  if (cartItemsVar !== null) {
-    for (let i = 0; i < cartItemsVar.length; i++) {
-      numberInCart += cartItemsVar[i]["Quantity"];
+  if (cartItems !== null) {
+    for (let i = 0; i < cartItems.length; i++) {
+      numberInCart += cartItems[i]["Quantity"];
     }
-    return numberInCart;
+    totalItemsInCart(numberInCart);
   }
 }
 
@@ -21,7 +20,3 @@ function totalItemsInCart(items) {
     document.getElementById("total_items_in_cart").innerHTML = items;
   }
 }
-
-let cartTotal = calcNumCartItems(cartItems);
-
-totalItemsInCart(cartTotal);
