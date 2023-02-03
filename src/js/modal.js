@@ -1,3 +1,4 @@
+import { calcNumCartItems } from "./cartContents.js";
 import ProductData from "./ProductData.mjs";
 import { productDetailsTemplate } from "./ProductDetails.mjs";
 import { setLocalStorage } from "./utils.mjs";
@@ -63,6 +64,8 @@ class ProductModal {
   // add to cart from home page
   addToCart() {
     setLocalStorage("so-cart", this.product);
+    // TEST
+    calcNumCartItems();
   }
 
   renderProductModal(selector) {
