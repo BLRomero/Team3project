@@ -11,19 +11,17 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-
   // check if there is anything in local storage. If not,
   // create an empty array and add item. Otherwise, parse and add
   const cartItems = (() => {
     const itemData = localStorage.getItem(key);
-    return itemData === null ? []
-    : JSON.parse(itemData);
+    return itemData === null ? [] : JSON.parse(itemData);
   })();
 
   // check if item is already in cart
-  if (cartItems.some(e => e.Id === data.Id)) {
+  if (cartItems.some((e) => e.Id === data.Id)) {
     // if it is in cart, increase quantity by 1
-    data = cartItems.find(e => e.Id === data.Id);
+    data = cartItems.find((e) => e.Id === data.Id);
     data.Quantity += 1;
   } else {
     // if its not already in cart, give it quantity 1 and add to cart
@@ -32,18 +30,17 @@ export function setLocalStorage(key, data) {
   }
 
   // save to local storage
-    localStorage.setItem(key, JSON.stringify(cartItems));
+  localStorage.setItem(key, JSON.stringify(cartItems));
 }
-
 
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  const product = urlParams.get('product');
+  const product = urlParams.get("product");
+  console.log(product, param);
   // added returning the product
   return product;
 }
-
 
 // function to take a list of objects and a template and insert the objects as HTML into the DOM
 export function renderListWithTemplate(
@@ -87,13 +84,12 @@ async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-
   let headerTemplate = await loadTemplate("../partials/header.html");
   let footerTemplate = await loadTemplate("../partials/footer.html");
 
-  const header = document.querySelector("header")
-  const footer = document.querySelector("footer")
+  const header = document.querySelector("header");
+  const footer = document.querySelector("footer");
 
-  renderWithTemplate(headerTemplate, header)
-  renderWithTemplate(footerTemplate, footer)
+  renderWithTemplate(headerTemplate, header);
+  renderWithTemplate(footerTemplate, footer);
 }

@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
@@ -14,6 +14,9 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: ${item.Quantity}</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
+   <div class = "buttonIcon">   
+    <button class = removeIcon id = ${item.productId} >X</button>
+    </div>
   </li>`;
   
     return newItem;
@@ -77,3 +80,16 @@ function totalItemsInCart(items) {
       document.getElementById("total_items_in_cart").innerHTML = items;
     }
   }
+    // remove item function to remove item
+  function removeItem(productId) {
+    let cartItems = getLocalStorage(this.key);
+    let removeItemId = productId;
+    cartItems = cartItems.filter((x) => x.id !== productId)
+    console.log(cartItems)
+    setLocalStorage("so-cart", cartItems){
+      
+    }
+  }
+  
+  // remove item event listener
+  document.addEventListener("click", this.removeItem.bind(this))

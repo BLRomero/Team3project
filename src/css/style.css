@@ -285,10 +285,14 @@ footer {
   padding: 1em;
 }
 
-removeIcon {
-  width: 25px;
-  height: 25px;
+.removeIcon {
+  width: 0px;
+  height: 40px;
   background-color: red;
   border: solid 1px black;
   text-align: center;
+  position: relative;
+}
+.buttonIcon{
+  margin-left: 30em;
 }

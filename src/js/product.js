@@ -7,6 +7,7 @@ loadHeaderFooter();
 
 // get the product Id
 const productId = getParam("product");
+
 // create instance of Product Data class
 const dataSource = new ProductData("tents");
 
