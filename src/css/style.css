@@ -98,6 +98,22 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 /* End utility classes */
+ 
+/* Product Grid */
+.productsGrid {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  grid-column-gap: 5%;
+}
+
+.productsGrid div {
+ /* border: black solid 1px;*/
+  text-align: center;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.75rem;
+}
+/* End Product Grid */
 
 /* Discount */
 .product-card_discount_price1 {
