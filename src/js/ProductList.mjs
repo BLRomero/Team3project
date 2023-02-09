@@ -45,7 +45,7 @@ export default class ProductList {
     document
     .querySelector(".sortByPrice")
     .addEventListener("click", this.sortByPrice.bind(this, list));
-
+    
     document.querySelector(".title").innerHTML = this.category;
     
   }
