@@ -41,10 +41,10 @@ export default class ProductList {
     // once the HTML is rendered we can add a listener to buttons
     document
     .querySelector(".sortByName")
-    .addEventListener("click", this.sortByName.bind(this));
+    .addEventListener("click", this.sortByName.bind(this, list));
     document
     .querySelector(".sortByPrice")
-    .addEventListener("click", this.sortByPrice.bind(this));
+    .addEventListener("click", this.sortByPrice.bind(this, list));
 
     document.querySelector(".title").innerHTML = this.category;
     
@@ -54,10 +54,44 @@ export default class ProductList {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 
-sortByName() {
-  console.log("Sort By Name");
-}
-sortByPrice() {
-  console.log("Sort By Name");
-}
+  sortByName(list) {
+    console.log(list);
+    function compareName(a, b) {
+      const nameA = a.Name.toUpperCase();
+      const nameB = b.Name.toUpperCase();
+    
+      if (nameA < nameB) {
+        return -1;
+      } else if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    }
+    
+    list.sort(compareName);
+    var clear = true;
+    var position = "afterbegin";
+    renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
+  }
+
+  // Sort items by Price ascending
+  sortByPrice(list) {
+    function comparePrice(a, b) {
+      const priceA = a.FinalPrice;
+      const priceB = b.FinalPrice;
+    
+      let comparison = 0;
+      if (priceA > priceB) {
+        comparison = 1;
+      } else if (priceA < priceB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
+    
+    list.sort(comparePrice);
+    var clear = true;
+    var position = "afterbegin";
+    renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
+  }
 }
