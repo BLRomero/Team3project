@@ -5,7 +5,6 @@ import {
 function productCardTemplate(product) {
   let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
   let newDiscount = Math.round(discount)
-  //console.log(newDiscount)
 
   return `<li class="product-card">
         <a href="../product_pages/index.html?product=${product.Id}">
@@ -39,9 +38,26 @@ export default class ProductList {
     // render the list 
     this.renderList(list);
 
+    // once the HTML is rendered we can add a listener to buttons
+    document
+    .querySelector(".sortByName")
+    .addEventListener("click", this.sortByName.bind(this));
+    document
+    .querySelector(".sortByPrice")
+    .addEventListener("click", this.sortByPrice.bind(this));
+
     document.querySelector(".title").innerHTML = this.category;
+    
   }
+
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
+
+sortByName() {
+  console.log("Sort By Name");
+}
+sortByPrice() {
+  console.log("Sort By Name");
+}
 }
