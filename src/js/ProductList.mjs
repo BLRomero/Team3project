@@ -55,7 +55,6 @@ export default class ProductList {
   }
 
   sortByName(list) {
-    console.log(list);
     function compareName(a, b) {
       const nameA = a.Name.toUpperCase();
       const nameB = b.Name.toUpperCase();
