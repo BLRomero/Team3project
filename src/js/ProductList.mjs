@@ -42,8 +42,8 @@ window.onclick = function (event) {
 // remove modal details for clean slate each click
 function removeModalDetails() {
   modal.style.display = "none";
-  const element = document.getElementsByClassName("product-detail")[0];
-  element.remove();
+  const element = document.getElementsByClassName("modal-content")[0];
+  element.innerHTML = '<span class="close">&times;</span>';
 }
 /* End Modal Functions */
 
