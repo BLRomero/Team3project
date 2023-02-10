@@ -98,7 +98,7 @@ button {
   border-bottom: 2px solid var(--primary-color);
 }
 /* End utility classes */
- 
+
 /* Product Grid */
 .productsGrid {
   display: grid;
@@ -107,7 +107,7 @@ button {
 }
 
 .productsGrid div {
- /* border: black solid 1px;*/
+  /* border: black solid 1px;*/
   text-align: center;
   color: #000;
   font-weight: 600;
@@ -135,15 +135,16 @@ button {
   margin-right: 70%;
 }
 
-.product-card_discount_price::before, .product-card_discount_price::after {
-    content: "";
-    position: absolute;
-    left: 100%;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    display: block;
-} 
+.product-card_discount_price::before,
+.product-card_discount_price::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  display: block;
+}
 
 .product-card_discount_price::before {
   top: 0;
