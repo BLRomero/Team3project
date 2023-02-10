@@ -2,6 +2,52 @@ import {
   renderListWithTemplate
 } from "./utils.mjs";
 
+import ProductDetails from "./ProductDetails.mjs";
+import ProductData from "./ProductData.mjs";
+
+/* FUNCTIONS FOR MODAL */
+function openModal() {
+  const modal = document.getElementById("modal");
+  const buttons = document.getElementsByClassName("card__productModalbtn");
+  const closeX = document.getElementsByClassName("close")[0];
+  var position = "beforeend";
+
+  for (var i = 0; i < buttons.length; i++) {
+    let buttonId = buttons[i].value;
+    buttons[i].addEventListener(
+      "click",
+      function () {
+        modal.style.display = "block";
+        const dataSource = new ProductData();
+        const product = new ProductDetails(buttonId, dataSource, ".modal-content", position);
+        product.init();
+      },
+      false
+    );
+  }
+
+  // close modal if click on "x"
+  closeX.onclick = function () {
+    removeModalDetails();
+  };
+}
+
+// close modal if click outside of it
+window.onclick = function (event) {
+  if (event.target == modal) {
+    removeModalDetails();
+  }
+};
+
+// remove modal details for clean slate each click
+function removeModalDetails() {
+  modal.style.display = "none";
+  const element = document.getElementsByClassName("modal-content")[0];
+  element.innerHTML = '<span class="close">&times;</span>';
+}
+/* End Modal Functions */
+
+
 function productCardTemplate(product) {
   let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
   let newDiscount = Math.round(discount)
@@ -40,14 +86,15 @@ export default class ProductList {
 
     // once the HTML is rendered we can add a listener to buttons
     document
-    .querySelector(".sortByName")
-    .addEventListener("click", this.sortByName.bind(this, list));
+      .querySelector(".sortByName")
+      .addEventListener("click", this.sortByName.bind(this, list));
     document
-    .querySelector(".sortByPrice")
-    .addEventListener("click", this.sortByPrice.bind(this, list));
-    
+      .querySelector(".sortByPrice")
+      .addEventListener("click", this.sortByPrice.bind(this, list));
+
     document.querySelector(".title").innerHTML = this.category;
-    
+
+    openModal();
   }
 
   renderList(list) {
@@ -58,7 +105,7 @@ export default class ProductList {
     function compareName(a, b) {
       const nameA = a.Name.toUpperCase();
       const nameB = b.Name.toUpperCase();
-    
+
       if (nameA < nameB) {
         return -1;
       } else if (nameA > nameB) {
@@ -66,7 +113,7 @@ export default class ProductList {
       }
       return 0;
     }
-    
+
     list.sort(compareName);
     var clear = true;
     var position = "afterbegin";
@@ -78,7 +125,7 @@ export default class ProductList {
     function comparePrice(a, b) {
       const priceA = a.FinalPrice;
       const priceB = b.FinalPrice;
-    
+
       let comparison = 0;
       if (priceA > priceB) {
         comparison = 1;
@@ -87,7 +134,7 @@ export default class ProductList {
       }
       return comparison;
     }
-    
+
     list.sort(comparePrice);
     var clear = true;
     var position = "afterbegin";

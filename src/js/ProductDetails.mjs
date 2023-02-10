@@ -24,17 +24,20 @@ export function productDetailsTemplate(product) {
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource){
+    constructor(productId, dataSource, element = "main", position = "afterBegin"){
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
+        this.element = element;
+        this.position = position;
         }
 
     async init() {
       // use our datasource to get the details for the current product.
         this.product = await this.dataSource.findProductById(this.productId);
+
         // once we have the product details we can render out the HTML
-        this.renderProductDetails("main");
+        this.renderProductDetails(this.element);
         // once the HTML is rendered we can add a listener to Add to Cart button
         document
             .getElementById("addToCart")
@@ -49,7 +52,7 @@ export default class ProductDetails {
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
         element.insertAdjacentHTML(
-          "afterBegin",
+          this.position,
           productDetailsTemplate(this.product)
         );
       }
