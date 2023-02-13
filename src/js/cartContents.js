@@ -21,9 +21,6 @@ function totalItemsInCart(items) {
   }
 }
 
-let cartTotal = calcNumCartItems(cartItems);
-
-totalItemsInCart(cartTotal);
 
 
 

@@ -65,3 +65,4 @@ function numberWithCommas(x) {
     }
     cartTotal = numberWithCommas(cartTotal.toFixed(2));
   
+   
