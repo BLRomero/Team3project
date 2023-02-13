@@ -341,3 +341,56 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+
+/* Newsletter Link */
+
+.overlay {
+	position: absolute;
+  padding: .5em;
+	bottom: 25px;
+	right: 50px;
+	background-color: #f0a868;
+  border: 2px solid black;
+	border-radius: 5px;
+	box-shadow: 3px 5px rgba(255, 255, 255, 0.514);
+}
+
+.overlay a {
+  color:#000;
+  font-size: larger;
+}
+
+/* Newsletter Page */
+
+.newsletter li {
+  list-style: none;
+}
+
+form.newsletter {
+  margin: 2em;
+  padding: 2em;
+  border: 3px solid #f0a868;
+  display: block;
+}
+
+form.newsletter ul {
+  width: 50%;
+}
+
+form.newsletter ul li{
+  display: grid;
+}
+
+.newsletter li label, .newsletter li input {
+  margin: .25em;
+}
+
+.subscribe {
+  background-color: #f0a868;
+  font-size: large;
+}
+
+.subscribe:hover {
+  background-color: #f0a76871;
+}
