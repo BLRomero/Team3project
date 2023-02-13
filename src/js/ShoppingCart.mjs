@@ -86,9 +86,7 @@ function totalItemsInCart(items) {
     let removeItemId = productId;
     cartItems = cartItems.filter((x) => x.id !== productId)
     console.log(cartItems)
-    setLocalStorage("so-cart", cartItems){
-      
-    }
+    setLocalStorage("so-cart", cartItems);
   }
   
   // remove item event listener
