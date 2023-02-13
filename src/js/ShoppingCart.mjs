@@ -65,28 +65,3 @@ function numberWithCommas(x) {
     }
     cartTotal = numberWithCommas(cartTotal.toFixed(2));
   
-    totalItemsInCart(numberInCart);
-  
-    // append price to div
-    const cartTotalContent = document.createTextNode(cartTotal);
-    document.getElementById("cart-footer").appendChild(cartTotalContent);
-  }
-
-function totalItemsInCart(items) {
-    if (items >= 1) {
-      let element = document.getElementById("numberOfItems");
-      element.classList.add("cartItems_total");
-      document.getElementById("total_items_in_cart").innerHTML = items;
-    }
-  }
-    // remove item function to remove item
-  function removeItem(productId) {
-    let cartItems = getLocalStorage(this.key);
-    let removeItemId = productId;
-    cartItems = cartItems.filter((x) => x.id !== productId)
-    console.log(cartItems)
-    setLocalStorage("so-cart", cartItems);
-  }
-  
-  // remove item event listener
-  document.addEventListener("click", this.removeItem.bind(this))
