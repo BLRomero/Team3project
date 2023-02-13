@@ -14,9 +14,6 @@ function cartItemTemplate(item) {
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: ${item.Quantity}</p>
     <p class="cart-card__price">$${item.FinalPrice}</p>
-   <div class = "buttonIcon">   
-    <button class = removeIcon id = ${item.productId} >X</button>
-    </div>
   </li>`;
   
     return newItem;
@@ -44,7 +41,7 @@ export default class ShoppingCart {
     }
   }}
 
-  // adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
+  // adds commaso  as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -57,12 +54,12 @@ function numberWithCommas(x) {
   
     // add the total price
     let cartTotal = 0;
-    // calcuates number of items in cart
-    let numberInCart = 0;
     for (let i = 0; i < cartItems.length; i++) {
       cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
-      numberInCart += cartItems[i]["Quantity"];
     }
     cartTotal = numberWithCommas(cartTotal.toFixed(2));
   
-   
+    // append price to div
+    const cartTotalContent = document.createTextNode(cartTotal);
+    document.getElementById("cart-footer").appendChild(cartTotalContent);
+  }
