@@ -13,6 +13,8 @@ function cartItemTemplate(item) {
     </a>
     <p class="cart-card__color">${item.Colors[0].ColorName}</p>
     <p class="cart-card__quantity">qty: ${item.Quantity}</p>
+    <button class="qtbtn increase" value="increase">+</button>
+    <button class="qtbtn decrease">-</button>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
   
@@ -39,7 +41,20 @@ export default class ShoppingCart {
       document.getElementById("cart-footer").innerHTML =
         "Your cart is empty.<br>Shop <a href='/index.html'>here</a>.";
     }
-  }}
+
+    const qtbtnsNodeList = document.querySelectorAll(".qtbtn");
+    const qtbtns = Array.from(qtbtnsNodeList);
+    qtbtns.forEach(btn => btn.addEventListener("click", this.alterCart.bind(this, btn)));
+        }
+
+    
+    alterCart(btn) {
+      console.log(btn);
+      return
+      setLocalStorage("so-cart", this.product);
+      calcNumCartItems();
+      }
+  }
 
   // adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
 function numberWithCommas(x) {
