@@ -1,8 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 
-var cartItems = getLocalStorage("so-cart");
-
-function calcNumCartItems(cartItemsVar) {
+export function calcNumCartItems() {
+  const cartItems = getLocalStorage("so-cart");
   // calcuates number of items in cartlet
   let numberInCart = 0;
 
