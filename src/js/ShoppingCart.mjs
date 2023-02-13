@@ -72,7 +72,6 @@ function numberWithCommas(x) {
     document.getElementById("cart-footer").appendChild(cartTotalContent);
   }
 
-  
 function totalItemsInCart(items) {
     if (items >= 1) {
       let element = document.getElementById("numberOfItems");
