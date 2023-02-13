@@ -20,7 +20,3 @@ function totalItemsInCart(items) {
     document.getElementById("total_items_in_cart").innerHTML = items;
   }
 }
-
-
-
-
