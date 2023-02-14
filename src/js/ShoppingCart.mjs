@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { calcNumCartItems } from "./cartContents.js";
 
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
@@ -60,6 +61,7 @@ export default class ShoppingCart {
       }
       setLocalStorage("so-cart", item, subtract);
       this.renderCartContents();
+      calcNumCartItems();
       }
   }
 
@@ -71,7 +73,6 @@ function numberWithCommas(x) {
   // if there are items in the cart, total will be displayed
   function renderCartTotal() {
     const cartItems = getLocalStorage("so-cart");
-  
     document.getElementById("cart-footer").classList.remove("hide");
   
     // add the total price
