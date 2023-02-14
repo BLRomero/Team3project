@@ -29,7 +29,7 @@ export default class ShoppingCart {
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
     // only create a product list and total if cart isn't empty
-    if (cartItems !== null) {
+    if (cartItems.length > 0) {
       const htmlItems = cartItems.map((item) => cartItemTemplate(item));
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   
@@ -37,6 +37,7 @@ export default class ShoppingCart {
       renderCartTotal();
     } else {
       // if cart is empty, display message
+      document.querySelector(this.parentSelector).innerHTML = "";
       document.getElementById("cart-footer").classList.remove("hide");
       document.getElementById("cart-footer").innerHTML =
         "Your cart is empty.<br>Shop <a href='/index.html'>here</a>.";
