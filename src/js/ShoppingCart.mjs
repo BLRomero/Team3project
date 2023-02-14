@@ -82,5 +82,6 @@ function numberWithCommas(x) {
   
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
+    document.getElementById("cart-footer").innerHTML = "Total: $";
     document.getElementById("cart-footer").appendChild(cartTotalContent);
   }

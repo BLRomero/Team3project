@@ -38,7 +38,14 @@ export function setLocalStorage(key, data, subtract = false) {
   if (cartItems.some(e => e.Id === data.Id)) {
     // if it is in cart, decrease quantity by 1
     data = cartItems.find(e => e.Id === data.Id);
+    const index = cartItems.findIndex(e => e.Id === data.Id);
+    // if qty = 0 remove from cart
     data.Quantity += -1;
+    if (data.Quantity <= 0) {
+      if (index > -1) {
+      cartItems.splice(index, 1);
+  }
+    }
   }
 }
 
