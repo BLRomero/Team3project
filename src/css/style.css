@@ -337,7 +337,7 @@ button {
   }
 
   .qtbtn {
-    padding: .025em .2em;
+    padding: 0.025em 0.2em;
     grid-row: 1;
     grid-column: 4;
   }
