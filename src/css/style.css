@@ -333,7 +333,17 @@ button {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto 10% 5% 5%;
+  }
+
+  .qtbtn {
+    padding: .025em .2em;
+    grid-row: 1;
+    grid-column: 4;
+  }
+
+  .qtbtn ~ .qtbtn {
+    grid-column: 5;
   }
 }
 
