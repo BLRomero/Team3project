@@ -1,8 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
-import { calcNumCartItems } from  "./cartContents.js";
+//import { calcNumCartItems } from  "./cartContents.js";
 import { renderCartTotal } from  "./ShoppingCart.mjs";
 
-import { getLocalStorage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -19,7 +18,7 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {
-    console.log(item);
+    console.log("Item", item);
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -53,9 +52,14 @@ export default class CheckoutProcess {
     );
     itemNumElement.innerText = this.list.length;
     // calculate the total of all the items in the cart
+    
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
+
+    let total = renderCartTotal();
+    this.itemTotal = total;
     summaryElement.innerText = "$" + this.itemTotal;
+    console.log("Item Total: ", this)
   }
   calculateOrdertotal() {
     this.shipping = 10 + (this.list.length - 1) * 2;
@@ -87,7 +91,7 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
+    console.log("form Data to JSON", json);
     try {
       const res = await services.checkout(json);
       console.log(res);

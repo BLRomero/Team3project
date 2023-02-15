@@ -51,10 +51,10 @@ function numberWithCommas(x) {
   }
   
   // if there are items in the cart, total will be displayed
-  function renderCartTotal() {
+  export function renderCartTotal() {
     const cartItems = getLocalStorage("so-cart");
   
-    document.getElementById("cart-footer").classList.remove("hide");
+    //document.getElementById("cart-footer").classList.remove("hide");
   
     // add the total price
     let cartTotal = 0;
@@ -65,5 +65,6 @@ function numberWithCommas(x) {
   
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
+    console.log(cartTotalContent);
     document.getElementById("cart-footer").appendChild(cartTotalContent);
   }
