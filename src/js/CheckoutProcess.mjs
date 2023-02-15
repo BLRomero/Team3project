@@ -42,10 +42,11 @@ export default class CheckoutProcess {
     this.list = getLocalStorage(this.key);
     this.calculateItemSummary();
   }
+
   calculateItemSummary() {
-
+    // Get the total number of items in the cart
     let numItems = getCalcNumCartItems();
-
+    
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
     );
@@ -59,11 +60,15 @@ export default class CheckoutProcess {
     this.itemTotal = total;
 
     summaryElement.innerText = "$" + this.itemTotal;
-    console.log("Item Total: ", this)
+
+    this.calculateOrdertotal(numItems);
+    this.displayOrderTotals();
   }
-  calculateOrdertotal() {
-    this.shipping = 10 + (this.list.length - 1) * 2;
+
+  calculateOrdertotal(numberofitems) {
+    this.shipping = 10 + (numberofitems - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
+    console.log(this.itemTotal);
     this.orderTotal = (
       parseFloat(this.itemTotal) +
       parseFloat(this.shipping) +
