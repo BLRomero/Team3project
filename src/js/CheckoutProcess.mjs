@@ -1,6 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
-//import { calcNumCartItems } from  "./cartContents.js";
-import { renderCartTotal } from  "./ShoppingCart.mjs";
+import { calcNumCartItems, calcCartTotal } from  "./cartContents.js";
 
 import ExternalServices from "./ExternalServices.mjs";
 
@@ -56,7 +55,7 @@ export default class CheckoutProcess {
     const amounts = this.list.map((item) => item.FinalPrice);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
 
-    let total = renderCartTotal();
+    let total = calcCartTotal();
     this.itemTotal = total;
     summaryElement.innerText = "$" + this.itemTotal;
     console.log("Item Total: ", this)

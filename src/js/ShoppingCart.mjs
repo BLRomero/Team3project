@@ -1,4 +1,5 @@
 import { getLocalStorage } from "./utils.mjs";
+import { calcCartTotal } from "./cartContents.js";
 
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
@@ -36,7 +37,8 @@ export default class ShoppingCart {
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   
       // get the sum of cart products
-      renderCartTotal();
+      let cartTotal = calcCartTotal();
+      renderCartTotal(cartTotal);
     } else {
       // if cart is empty, display message
       document.getElementById("cart-footer").classList.remove("hide");
@@ -45,24 +47,9 @@ export default class ShoppingCart {
     }
   }}
 
-  // adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  
   // if there are items in the cart, total will be displayed
-  export function renderCartTotal() {
-    const cartItems = getLocalStorage("so-cart");
-  
-    //document.getElementById("cart-footer").classList.remove("hide");
-  
-    // add the total price
-    let cartTotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
-    }
-    cartTotal = numberWithCommas(cartTotal.toFixed(2));
-  
+  function renderCartTotal(cartTotal) {
+    document.getElementById("cart-footer").classList.remove("hide");
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
     console.log(cartTotalContent);
