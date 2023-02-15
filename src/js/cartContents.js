@@ -27,17 +27,17 @@ function totalItemsInCart(items) {
 }
 
 export function calcCartTotal() {
-    const cartItems = getLocalStorage("so-cart");
-    // add the total price
-    let cartTotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
-    }
-    cartTotal = numberWithCommas(cartTotal.toFixed(2));
-    return cartTotal;
+  const cartItems = getLocalStorage("so-cart");
+  // add the total price
+  let cartTotal = 0;
+  for (let i = 0; i < cartItems.length; i++) {
+    cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
   }
+  cartTotal = numberWithCommas(cartTotal.toFixed(2));
+  return cartTotal;
+}
 
-    // adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
+// adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
