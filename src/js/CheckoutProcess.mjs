@@ -46,6 +46,7 @@ export default class CheckoutProcess {
   calculateItemSummary() {
     // Get the total number of items in the cart
     let numItems = getCalcNumCartItems();
+    this.numItems = numItems;
     
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
@@ -54,19 +55,17 @@ export default class CheckoutProcess {
       this.outputSelector + " #num-items"
     );
     //itemNumElement.innerText = this.list.length;
-    itemNumElement.innerText = numItems;
+    itemNumElement.innerText = this.numItems;
+
     // calculate the total of all the items in the cart
     let total = calcCartTotal();
     this.itemTotal = total;
 
     summaryElement.innerText = "$" + this.itemTotal;
-
-    this.calculateOrdertotal(numItems);
-    this.displayOrderTotals();
   }
 
-  calculateOrdertotal(numberofitems) {
-    this.shipping = 10 + (numberofitems - 1) * 2;
+  calculateOrdertotal() {
+    this.shipping = 10 + (this.numItems - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
       parseFloat(this.itemTotal) +
