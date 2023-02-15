@@ -52,6 +52,5 @@ export default class ShoppingCart {
     document.getElementById("cart-footer").classList.remove("hide");
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
-    console.log(cartTotalContent);
     document.getElementById("cart-footer").appendChild(cartTotalContent);
   }
