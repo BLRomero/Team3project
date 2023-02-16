@@ -94,7 +94,6 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log("form Data to JSON", json);
     try {
       const res = await services.checkout(json);
       console.log(res);

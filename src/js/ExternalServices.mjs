@@ -24,10 +24,12 @@ export default class ExternalServices {
     return data.Result;
   }
   async checkout(payload) {
+    console.log(typeof payload);
+    console.log(typeof JSON.stringify(payload));
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(payload),
     };
