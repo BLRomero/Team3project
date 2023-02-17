@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { calcNumCartItems } from "./cartContents.js";
+import { calcNumCartItems, calcCartTotal, numberWithCommas } from "./cartContents.js";
 
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
@@ -72,7 +72,9 @@ export default class ShoppingCart {
   
   // if there are items in the cart, total will be displayed
   function renderCartTotal(cartTotal) {
+    cartTotal = numberWithCommas(cartTotal.toFixed(2));
     document.getElementById("cart-footer").classList.remove("hide");
+    document.getElementById("cart-footer").innerText = "Total: $";
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
     document.getElementById("cart-footer").appendChild(cartTotalContent);
