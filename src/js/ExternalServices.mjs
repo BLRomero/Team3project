@@ -2,6 +2,7 @@ const baseURL = "https://wdd330-backend.onrender.com/";
 // changed from http://server-nodejs.cit.byui.edu:3000/checkout
 function convertToJson(res) {
   if (res.ok) {
+    alert("Success!");
     return res.json();
   } else {
     throw new Error("Bad Response");
