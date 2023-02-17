@@ -3,7 +3,7 @@ import {
 } from "./utils.mjs";
 
 import ProductDetails from "./ProductDetails.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 /* FUNCTIONS FOR MODAL */
 function openModal() {
@@ -18,7 +18,7 @@ function openModal() {
       "click",
       function () {
         modal.style.display = "block";
-        const dataSource = new ProductData();
+        const dataSource = new ExternalServices();
         const product = new ProductDetails(buttonId, dataSource, ".modal-content", position);
         product.init();
       },
