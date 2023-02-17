@@ -4,7 +4,10 @@ import { calcNumCartItems, calcCartTotal, numberWithCommas } from "./cartContent
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
-      
+    <img
+    src="${item.Images.PrimarySmall}"
+    alt="${item.Name}"
+  />
     </a>
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>
@@ -15,14 +18,6 @@ function cartItemTemplate(item) {
     <button class="qtbtn" value="${item.Id}" data-value="decrease" >-</button>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
-
-  /*
-<img
-        src="${item.Images.PrimarySmall}"
-        alt="${item.Name}"
-      />
-  */
-  
     return newItem;
   }
 
