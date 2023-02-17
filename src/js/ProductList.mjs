@@ -95,9 +95,8 @@ export default class ProductList {
     document.querySelector(".title").innerHTML = this.category;
 
     // add event listener to input
-    document
-      .querySelector(".product-search")
-      .addEventListener("change", (e) => {console.log("changed")});
+    let searchQuery = document.querySelector(".product-search");
+    searchQuery.addEventListener("change", (e) => {this.filterSearch(list, searchQuery.value)});
 
     openModal();
   }
@@ -106,6 +105,7 @@ export default class ProductList {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
 
+  // sort products by brand
   sortByName(list) {
     function compareName(a, b) {
       const nameA = a.Name.toUpperCase();
@@ -144,5 +144,10 @@ export default class ProductList {
     var clear = true;
     var position = "afterbegin";
     renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
+  }
+
+  filterSearch(list, query) {
+    console.log(list);
+    console.log(query);
   }
 }
