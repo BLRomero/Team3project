@@ -4,10 +4,7 @@ import { calcNumCartItems } from "./cartContents.js";
 function cartItemTemplate(item) {
     const newItem = `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
-      <img
-        src="${item.Images.PrimarySmall}"
-        alt="${item.Name}"
-      />
+      
     </a>
     <a href="#">
       <h2 class="card__name">${item.Name}</h2>
@@ -18,6 +15,13 @@ function cartItemTemplate(item) {
     <button class="qtbtn" value="${item.Id}" data-value="decrease" >-</button>
     <p class="cart-card__price">$${item.FinalPrice}</p>
   </li>`;
+
+  /*
+<img
+        src="${item.Images.PrimarySmall}"
+        alt="${item.Name}"
+      />
+  */
   
     return newItem;
   }
@@ -35,7 +39,8 @@ export default class ShoppingCart {
       document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   
       // get the sum of cart products
-      renderCartTotal();
+      let cartTotal = calcCartTotal();
+      renderCartTotal(cartTotal);
     } else {
       // if cart is empty, display message
       document.querySelector(this.parentSelector).innerHTML = "";
@@ -44,46 +49,31 @@ export default class ShoppingCart {
         "Your cart is empty.<br>Shop <a href='/index.html'>here</a>.";
     }
 
-    // add event listener to amount buttons
-    const qtbtnsNodeList = document.querySelectorAll(".qtbtn");
-    const qtbtns = Array.from(qtbtnsNodeList);
-    qtbtns.forEach(btn => btn.addEventListener("click", () => {this.alterCart(cartItems, btn)}));
-        }
+   // add event listener to amount buttons
+   const qtbtnsNodeList = document.querySelectorAll(".qtbtn");
+   const qtbtns = Array.from(qtbtnsNodeList);
+   qtbtns.forEach(btn => btn.addEventListener("click", () => {this.alterCart(cartItems, btn)}));
+       }
 
-    // adds or subtracts from cart
-    alterCart(cartItems, btn) {
-      let subtract;
-      const item = cartItems.find(function findIt(e) { if (e.Id == btn.value) return e.Id});
-      if (btn.getAttribute("data-value") == "increase") {
-        subtract = false;
-      } else {
-        subtract = true;
-      }
-      setLocalStorage("so-cart", item, subtract);
-      this.renderCartContents();
-      calcNumCartItems();
-      }
-  }
-
-  // adds commas to numbers as appropriate source: https://stackoverflow.com/questions/2901102/how-to-format-a-number-with-commas-as-thousands-separators
-function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
+   // adds or subtracts from cart
+   alterCart(cartItems, btn) {
+     let subtract;
+     const item = cartItems.find(function findIt(e) { if (e.Id == btn.value) return e.Id});
+     if (btn.getAttribute("data-value") == "increase") {
+       subtract = false;
+     } else {
+       subtract = true;
+     }
+     setLocalStorage("so-cart", item, subtract);
+     this.renderCartContents();
+     calcNumCartItems();
+     }
+    }
   
   // if there are items in the cart, total will be displayed
-  function renderCartTotal() {
-    const cartItems = getLocalStorage("so-cart");
+  function renderCartTotal(cartTotal) {
     document.getElementById("cart-footer").classList.remove("hide");
-  
-    // add the total price
-    let cartTotal = 0;
-    for (let i = 0; i < cartItems.length; i++) {
-      cartTotal += cartItems[i]["Quantity"] * cartItems[i]["FinalPrice"];
-    }
-    cartTotal = numberWithCommas(cartTotal.toFixed(2));
-  
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
-    document.getElementById("cart-footer").innerHTML = "Total: $";
     document.getElementById("cart-footer").appendChild(cartTotalContent);
   }
