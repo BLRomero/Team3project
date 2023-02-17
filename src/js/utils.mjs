@@ -12,7 +12,7 @@ export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 // save data to local storage
-export function setLocalStorage(key, data) {
+export function setLocalStorage(key, data, subtract = false) {
 
   // check if there is anything in local storage. If not,
   // create an empty array and add item. Otherwise, parse and add
@@ -22,6 +22,7 @@ export function setLocalStorage(key, data) {
     : JSON.parse(itemData);
   })();
 
+  if (!subtract) {
   // check if item is already in cart
   if (cartItems.some(e => e.Id === data.Id)) {
     // if it is in cart, increase quantity by 1
@@ -32,6 +33,21 @@ export function setLocalStorage(key, data) {
     data.Quantity = 1;
     cartItems.push(data);
   }
+} else if (subtract) {
+  // check if item is already in cart
+  if (cartItems.some(e => e.Id === data.Id)) {
+    // if it is in cart, decrease quantity by 1
+    data = cartItems.find(e => e.Id === data.Id);
+    const index = cartItems.findIndex(e => e.Id === data.Id);
+    // if qty = 0 remove from cart
+    data.Quantity += -1;
+    if (data.Quantity <= 0) {
+      if (index > -1) {
+      cartItems.splice(index, 1);
+  }
+    }
+  }
+}
 
   // save to local storage
     localStorage.setItem(key, JSON.stringify(cartItems));
