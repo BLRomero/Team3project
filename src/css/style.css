@@ -30,6 +30,9 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+a {
+  text-decoration: none;
+}
 .logo {
   line-height: 60px;
   width: 245px;
@@ -360,7 +363,17 @@ button {
   }
   .cart-card {
     font-size: inherit;
-    grid-template-columns: 150px auto 15%;
+    grid-template-columns: 150px auto 10% 5% 5%;
+  }
+
+  .qtbtn {
+    padding: 0.025em 0.2em;
+    grid-row: 1;
+    grid-column: 4;
+  }
+
+  .qtbtn ~ .qtbtn {
+    grid-column: 5;
   }
 }
 

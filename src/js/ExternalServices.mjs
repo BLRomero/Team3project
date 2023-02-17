@@ -24,8 +24,6 @@ export default class ExternalServices {
     return data.Result;
   }
   async checkout(payload) {
-    console.log(typeof payload);
-    console.log(typeof JSON.stringify(payload));
     const options = {
       method: "POST",
       headers: {
