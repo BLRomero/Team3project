@@ -94,6 +94,11 @@ export default class ProductList {
 
     document.querySelector(".title").innerHTML = this.category;
 
+    // add event listener to input
+    document
+      .querySelector(".product-search")
+      .addEventListener("change", (e) => {console.log("changed")});
+
     openModal();
   }
 
