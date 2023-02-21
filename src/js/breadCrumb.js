@@ -1,22 +1,37 @@
 import { getParam } from "./utils.mjs";
 
-
-function showBreadCrumb(){
+function showBreadCrumb() {
     let crumbs = window.location.pathname.split("/");
     let prodCatagory = getParam('product');
-    
-    //let listElement = `<li>${text}</li>`;
 
-    /*for(let index=0; index<crumbs.length-1; index++){
-        let text = crumbs[index];
-        if(index==0) { 
-            text = "Home";
+    for (let index = 0; index < crumbs.length - 2; index++) {
+        if (index == 0) {
+            const li = document.createElement("li");
+            li.setAttribute("class", "crumbs");
+            //let text = crumbs[index];
+
+            let text = document.createTextNode("home");
+            li.appendChild(text);
+
+            const element = document.getElementById('breadCrumbLinks');
+            element.appendChild(li);
         }
 
-        document.getElementById('breadCrumbLinks').innerHTML = `<li>${text}</li>`;*/
-      /* document.getElementById('breadCrumbLinks').append(("<li><a class='crumb"+ (index==crumbs.length-2? "active" : "") +"' href='"+buildLink(crumbs.length-index)+"'>"+ text +"</a></li>"));
-    }*/
-    
+        const li = document.createElement("li");
+        li.setAttribute("class", "crumbs");
+        //let text = crumbs[index];
+
+        let text = document.createTextNode(prodCatagory);
+        li.appendChild(text);
+
+        const element = document.getElementById('breadCrumbLinks');
+        element.appendChild(li);
+    }
+
+
+    /* document.getElementById('breadCrumbLinks').append(("<li><a class='crumb"+ (index==crumbs.length-2? "active" : "") +"' href='"+buildLink(crumbs.length-index)+"'>"+ text +"</a></li>"));
+  }*/
+
 }
 /*
 function buildLink(level)

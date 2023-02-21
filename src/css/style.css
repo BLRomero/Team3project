@@ -99,6 +99,17 @@ button {
 }
 /* End utility classes */
  
+/* BreadCrumbs */
+
+#breadCrumbLinks li {
+  color: #000;
+  list-style-type: none;
+  display: inline;
+  padding: .25rem .5rem;
+}
+
+/* End BreadCrumbs */
+
 /* Product Grid */
 .productsGrid {
   display: grid;
