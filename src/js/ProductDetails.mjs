@@ -1,5 +1,5 @@
 import { calcNumCartItems } from "./cartContents.js";
-import { setLocalStorage } from "./utils.mjs";
+import { alertMessage, setLocalStorage } from "./utils.mjs";
 
 export function productDetailsTemplate(product) {
   let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
@@ -47,6 +47,7 @@ export default class ProductDetails {
     addToCart() {
         setLocalStorage("so-cart", this.product);
         calcNumCartItems();
+        alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
     }
 
     renderProductDetails(selector) {
