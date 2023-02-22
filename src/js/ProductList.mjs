@@ -1,6 +1,4 @@
-import {
-  renderListWithTemplate
-} from "./utils.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
 import ProductDetails from "./ProductDetails.mjs";
 import ExternalServices from "./ExternalServices.mjs";
@@ -19,7 +17,12 @@ function openModal() {
       function () {
         modal.style.display = "block";
         const dataSource = new ExternalServices();
-        const product = new ProductDetails(buttonId, dataSource, ".modal-content", position);
+        const product = new ProductDetails(
+          buttonId,
+          dataSource,
+          ".modal-content",
+          position
+        );
         product.init();
       },
       false
@@ -34,6 +37,7 @@ function openModal() {
 
 // close modal if click outside of it
 window.onclick = function (event) {
+  const modal = document.getElementById("modal");
   if (event.target == modal) {
     removeModalDetails();
   }
@@ -47,10 +51,13 @@ function removeModalDetails() {
 }
 /* End Modal Functions */
 
-
 function productCardTemplate(product) {
-  let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
-  let newDiscount = Math.round(discount)
+  let discount =
+    ((product.FinalPrice - product.SuggestedRetailPrice) /
+      product.SuggestedRetailPrice) *
+    100 *
+    -1;
+  let newDiscount = Math.round(discount);
 
   return `<li class="product-card">
         <a href="../product_pages/index.html?product=${product.Id}">
@@ -81,7 +88,7 @@ export default class ProductList {
     // our dataSource will return a Promise...so we can use await to resolve it.
     const list = await this.dataSource.getData(this.category);
 
-    // render the list 
+    // render the list
     this.renderList(list);
 
     // once the HTML is rendered we can add a listener to buttons
@@ -96,7 +103,14 @@ export default class ProductList {
 
     // add event listener to input
     let searchQuery = document.querySelector(".product-search");
-    searchQuery.addEventListener("change", (e) => {this.filterSearch(list, searchQuery.value)});
+    searchQuery.addEventListener("change", (e) => {
+      this.filterSearch(list, searchQuery.value);
+    });
+    document
+      .querySelector(".product-search-btn")
+      .addEventListener("click", (e) => {
+        this.filterSearch(list, searchQuery.value);
+      });
 
     openModal();
   }
@@ -122,7 +136,13 @@ export default class ProductList {
     list.sort(compareName);
     var clear = true;
     var position = "afterbegin";
-    renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      position,
+      clear
+    );
   }
 
   // Sort items by Price ascending
@@ -143,11 +163,39 @@ export default class ProductList {
     list.sort(comparePrice);
     var clear = true;
     var position = "afterbegin";
-    renderListWithTemplate(productCardTemplate, this.listElement, list, position, clear);
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      list,
+      position,
+      clear
+    );
   }
 
   filterSearch(list, query) {
-    console.log(list);
-    console.log(query);
+    let newList = [];
+    query = query.toUpperCase();
+    for (let i = 0; i < list.length; i++) {
+      let compareBrand = list[i].Brand.Name.toUpperCase();
+      let compareName = list[i].Name.toUpperCase();
+
+      if (compareBrand.includes(query)) {
+        newList.push(list[i]);
+      }
+      
+      else if (compareName.includes(query)) {
+        newList.push(list[i]);
+      }
+    }
+
+    var clear = true;
+    var position = "afterbegin";
+    renderListWithTemplate(
+      productCardTemplate,
+      this.listElement,
+      newList,
+      position,
+      clear
+    );
   }
 }
