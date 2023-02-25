@@ -118,6 +118,11 @@ export async function loadHeaderFooter() {
   calcNumCartItems();
 }
 
+export function myHeader() {
+  const header = document.querySelector(".pathHeader");
+  return header;
+}
+
 export function alertMessage(message, scroll = true, duration = 3000) {
   const alert = document.createElement("div");
   alert.classList.add("alert");
