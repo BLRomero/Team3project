@@ -453,3 +453,14 @@ form.newsletter ul li {
 .subscribe:hover {
   background-color: #f0a76871;
 }
+
+.removeBtn {  
+   width: 25px;  
+   height: 40px;   
+   background-color: red;   
+   border: solid 1px black;   
+   text-align: left; 
+   margin-top: 100px;
+   margin-right: 75px;
+
+  }

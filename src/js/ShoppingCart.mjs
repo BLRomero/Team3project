@@ -17,6 +17,7 @@ function cartItemTemplate(item) {
     <button class="qtbtn" value="${item.Id}" data-value="increase" >+</button>
     <button class="qtbtn" value="${item.Id}" data-value="decrease" >-</button>
     <p class="cart-card__price">$${item.FinalPrice}</p>
+    <button class = "qtbtn removeBtn" value = "${item.Id}" onclick = ${removeIcon()} >X</button>
   </li>`;
     return newItem;
   }
@@ -73,4 +74,7 @@ export default class ShoppingCart {
     // append price to div
     const cartTotalContent = document.createTextNode(cartTotal);
     document.getElementById("cart-footer").appendChild(cartTotalContent);
+  }
+  function removeIcon(){
+    console.log("remove");
   }
