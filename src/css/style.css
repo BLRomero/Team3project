@@ -169,6 +169,12 @@ button {
   position: relative;
   text-align: center;
 }
+.pathHeader {
+  transition-property: background-color;
+  transition-duration: 3s;
+  width: 100px;
+  height: 75px;
+}
 
 .cart svg {
   width: 25px;

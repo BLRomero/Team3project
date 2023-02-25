@@ -1,9 +1,13 @@
 import { calcNumCartItems } from "./cartContents.js";
-import { alertMessage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, setLocalStorage, myHeader } from "./utils.mjs";
 
 export function productDetailsTemplate(product) {
-  let discount = (((product.FinalPrice - product.SuggestedRetailPrice) / product.SuggestedRetailPrice) * 100) * (-1)
-  let newDiscount = Math.round(discount)
+  let discount =
+    ((product.FinalPrice - product.SuggestedRetailPrice) /
+      product.SuggestedRetailPrice) *
+    100 *
+    -1;
+  let newDiscount = Math.round(discount);
 
   return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
     <h2 class="divider">${product.NameWithoutBrand}</h2>
@@ -24,37 +28,55 @@ export function productDetailsTemplate(product) {
 }
 
 export default class ProductDetails {
-    constructor(productId, dataSource, element = "main", position = "afterBegin"){
-        this.productId = productId;
-        this.product = {};
-        this.dataSource = dataSource;
-        this.element = element;
-        this.position = position;
-        }
+  constructor(
+    productId,
+    dataSource,
+    element = "main",
+    position = "afterBegin"
+  ) {
+    this.productId = productId;
+    this.product = {};
+    this.dataSource = dataSource;
+    this.element = element;
+    this.position = position;
+  }
 
-    async init() {
-      // use our datasource to get the details for the current product.
-        this.product = await this.dataSource.findProductById(this.productId);
+  async init() {
+    // use our datasource to get the details for the current product.
+    this.product = await this.dataSource.findProductById(this.productId);
 
-        // once we have the product details we can render out the HTML
-        this.renderProductDetails(this.element);
-        // once the HTML is rendered we can add a listener to Add to Cart button
-        document
-            .getElementById("addToCart")
-            .addEventListener("click", this.addToCart.bind(this));
-        }
+    // once we have the product details we can render out the HTML
+    this.renderProductDetails(this.element);
+    // once the HTML is rendered we can add a listener to Add to Cart button
+    document
+      .getElementById("addToCart")
+      .addEventListener("click", this.addToCart.bind(this));
+  }
 
-    addToCart() {
-        setLocalStorage("so-cart", this.product);
-        calcNumCartItems();
-        alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
-    }
+  addToCart() {
+    setLocalStorage("so-cart", this.product);
+    this.ratestar();
+    calcNumCartItems();
+    alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
+  }
 
-    renderProductDetails(selector) {
-        const element = document.querySelector(selector);
-        element.insertAdjacentHTML(
-          this.position,
-          productDetailsTemplate(this.product)
-        );
-      }
+  renderProductDetails(selector) {
+    const element = document.querySelector(selector);
+    element.insertAdjacentHTML(
+      this.position,
+      productDetailsTemplate(this.product)
+    );
+  }
+  ratestar() {
+    var a;
+    a = myHeader();
+    a.style.backgroundColor = "white";
+    setTimeout(function () {
+      a.style.backgroundColor = "green";
+    }, 1000);
+    setTimeout(function () {
+      a.style.backgroundColor = "white";
+    }, 2000);
+    // setInterval(this.ratestar, 3000);
+  }
 }
