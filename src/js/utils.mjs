@@ -53,6 +53,21 @@ export function setLocalStorage(key, data, subtract = false) {
     localStorage.setItem(key, JSON.stringify(cartItems));
 }
 
+// save data to local storage
+export function setLocalStorageComments(key, data) {
+  // check if there is anything in local storage. If not,
+  // create an empty array and add item. Otherwise, parse and add
+  const itemComments = (() => {
+    const itemComment = localStorage.getItem(key);
+    return itemComment === null ? []
+    : JSON.parse(itemComment);
+  })();
+
+  itemComments.push(data);
+  // save to local storage
+    localStorage.setItem(key, JSON.stringify(itemComments));
+}
+
 
 export function getParam(param) {
   const queryString = window.location.search;

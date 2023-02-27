@@ -276,6 +276,17 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+#commenttxt {
+  border-radius: 5px;
+  height: 2rem;
+  width: 20rem;
+  background-color: #eeeeee;
+}
+#addComment {
+  display: inline-block;
+  font-size: var(--small-font);
+}
 /* End product list card */
 
 .product-detail {
