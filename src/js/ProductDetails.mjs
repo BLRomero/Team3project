@@ -1,5 +1,5 @@
 import { calcNumCartItems } from "./cartContents.js";
-import { alertMessage, setLocalStorage, myHeader } from "./utils.mjs";
+import { alertMessage, setLocalStorage, myHeader, setLocalStorageComments, getLocalStorage } from "./utils.mjs";
 
 export function productDetailsTemplate(product) {
   let discount =
@@ -24,7 +24,12 @@ export function productDetailsTemplate(product) {
     </p>
     <div class="product-detail__add">
       <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
-    </div></section>`;
+    </div>
+    </section>`;
+}
+
+export function productCommentsTemplate(comment) {
+  return `<p>${comment}</p>`;
 }
 
 export default class ProductDetails {
@@ -44,14 +49,20 @@ export default class ProductDetails {
   async init() {
     // use our datasource to get the details for the current product.
     this.product = await this.dataSource.findProductById(this.productId);
-
     // once we have the product details we can render out the HTML
     this.renderProductDetails(this.element);
+    
     // once the HTML is rendered we can add a listener to Add to Cart button
     document
       .getElementById("addToCart")
       .addEventListener("click", this.addToCart.bind(this));
-  }
+
+      if (window.location.href.includes('product_pages')) {
+        this.renderProductComments(this.productId);
+        document.getElementById("addComment").addEventListener("click", () => this.createComment(this.productId)); 
+      }
+     
+    }
 
   addToCart() {
     setLocalStorage("so-cart", this.product);
@@ -78,5 +89,35 @@ export default class ProductDetails {
       a.style.backgroundColor = "white";
     }, 2000);
     // setInterval(this.ratestar, 3000);
+  }
+
+
+  createComment(id) {
+    let commenttxt = document.getElementById("commenttxt").value;
+    if (commenttxt) {
+    let current = new Date();
+    let cDate = (current.getMonth() + 1) + "/" + current.getDate() + "/" + current.getFullYear();
+    let cTime = current.getHours() + ":" + current.getMinutes();
+    let dateTime = cDate + ' ' + cTime;
+    commenttxt = `${dateTime} - ${commenttxt}`;
+    setLocalStorageComments(id, commenttxt);
+    this.renderProductComments(id);
+    document.getElementById("commenttxt").value = "";
+  }
+  }
+
+  renderProductComments(id) {
+    const element = document.querySelector(".commentSection");
+    element.innerHTML = "";
+
+    let comments = getLocalStorage(id);
+    if (comments) {
+      comments.forEach(comment => {
+        element.insertAdjacentHTML(
+        this.position,
+        productCommentsTemplate(comment)
+      )
+      });
+      ; }
   }
 }
