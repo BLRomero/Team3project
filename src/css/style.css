@@ -108,6 +108,10 @@ button {
   padding: .25rem .5rem;
 }
 
+#breadCrumbLinks li::after {
+  content: &rarr;
+}
+
 /* End BreadCrumbs */
 
 /* Product Grid */

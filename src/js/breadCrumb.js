@@ -1,10 +1,23 @@
 import { getParam } from "./utils.mjs";
 
 function showBreadCrumb() {
-    let crumbs = window.location.pathname.split("/");
-    let prodCatagory = getParam('product');
+   // let crumbs = window.location.pathname.split("/");
+    const crumbs = [];
 
-    for (let index = 0; index < crumbs.length - 2; index++) {
+    let prodCatagory = getParam('product'); 
+    crumbs.push(`${prodCatagory}`);
+
+    let text = `<ul>`;
+    for (let index = 0; index < crumbs.length; index++) {
+        text += `<li>${crumbs[index]}</li>`;        
+    }
+
+    text += `</ul>`;
+    
+    document.getElementById('breadCrumbLinks').innerHTML = text;
+
+    /*
+    for (let index = 0; index < crumbs.length - 1; index++) {
         if (index == 0) {
             const li = document.createElement("li");
             li.setAttribute("class", "crumbs");
@@ -26,7 +39,7 @@ function showBreadCrumb() {
 
         const element = document.getElementById('breadCrumbLinks');
         element.appendChild(li);
-    }
+    }*/
 
 
     /* document.getElementById('breadCrumbLinks').append(("<li><a class='crumb"+ (index==crumbs.length-2? "active" : "") +"' href='"+buildLink(crumbs.length-index)+"'>"+ text +"</a></li>"));
