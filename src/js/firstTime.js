@@ -9,7 +9,7 @@ const element = document.getElementById("overlay1");
 
 
 // determine if this is the first visit and if yes, display the register.
-if (visitCount != 1) {
+if (visitCount != 0) {
     element.style.visibility = "hidden";
 } else {
     element.style.visibility = "visible";
