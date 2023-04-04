@@ -432,27 +432,22 @@ footer {
 
 /* Newsletter Page */
 
-.newsletter li {
-  list-style: none;
+.newsletter fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+  margin: 0 auto;
 }
 
 form.newsletter {
   margin: 2em;
   padding: 2em;
   border: 3px solid #f0a868;
-  display: block;
+  
 }
 
-form.newsletter ul {
-  width: 50%;
-}
-
-form.newsletter ul li {
-  display: grid;
-}
-
-.newsletter li label,
-.newsletter li input {
+.newsletter fieldset label,
+.newsletter fieldset input {
   margin: 0.25em;
 }
 
